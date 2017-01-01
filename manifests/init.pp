@@ -18,7 +18,7 @@ class skype(
       notify => Exec['apt_update'],
     } ->
     exec { 'dpkg -s skype > /dev/null || dpkg -i /usr/local/src/skype.deb || apt-get -f -y install':
-      require => Wget::Fetch ['skype.deb'],
+      require => Wget::Fetch['skype.deb'],
       before  => Service['skype'],
     }
   } else {
@@ -26,7 +26,7 @@ class skype(
       ensure   => present,
       provider => 'dpkg',
       source   => '/usr/local/src/skype.deb',
-      require  => Wget::Fetch ['skype.deb'],
+      require  => Wget::Fetch['skype.deb'],
       before   => Service['skype'],
     }
   }
